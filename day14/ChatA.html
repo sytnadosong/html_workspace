@@ -6,14 +6,30 @@
 
 <link rel="stylesheet" type="text/css" href="css/chat.css" />
 
-<script></script>
+<script>
+
+
+function enter(){
+
+	//chatB의 textarea
+	opener.chatB.area.value+=msgA+"\n";//일반적인문서의줄바꿈, 마크업이아닌경우
+
+	opener.chatA.area.value+=msgA+"\n";
+
+}
+
+function init(){
+	msgA=document.getElemetnById("msgA");
+}
+
+</script>
 
 </head>
 
-<body>
+<body onLoad="init()">
 <div id="wrapper">
 	<textarea>점심먹었니?</textarea>
-	<input type="text">
+	<input type="text" onKeyUp="enter()" id="msgA">
 </div>
 
 </body>

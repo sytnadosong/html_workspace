@@ -6,14 +6,21 @@
 
 <link rel="stylesheet" type="text/css" href="css/chat.css" />
 
-<script></script>
+<script>
+var area;
+
+function init(){
+	area=document.getElementById("area");
+
+}
+</script>
 
 </head>
 
-<body>
+<body onLoad="init()">
 <div id="wrapper">
-	<textarea>점심먹었니?</textarea>
-	<input type="text">
+	<textarea id="area">점심먹었니?</textarea>
+	<input type="text" id="msgA">
 </div>
 
 </body>

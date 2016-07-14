@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>달력만들기</title>
+<style>
+#wrapper{
+	width:704px;
+	height:800px;
+	border:1px solid red;
+	margin:auto;
+}
+#up{
+	width:100%;
+	height:40px;
+	background:#00cc33;
+}
+/*#down{
+	width:100%;
+	height:30px;
+	background:#ffcc33;
+}*/
+#dayTitle{
+	width:100%;
+	height:30px;
+	background:#99ff00;
+}
+ul{
+	list-style:none;
+	width:100%;
+} 
+ul li{
+	float:left;
+	width:100%;	
+}
+</style>
+<script src="../lib/DateBox.js"></script>
+<script>
+window.addEventListerner("load",function(){
+	
+});
+
+</script>
+
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="up"></div>
+	<div id="dayTitle">
+		<ul>
+			<li>일</li>
+			<li>월</li>
+			<li>화</li>
+			<li>수</li>
+			<li>목</li>
+			<li>금</li>
+			<li>토</li>
+		</ul>
+	</div>
+	<div id="down"></div>
+</div>
+</body>
+
+</html>
