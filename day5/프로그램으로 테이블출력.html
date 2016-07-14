@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>프로그램으로 테이블출력</title>
+<script>
+var f=prompt("층수를 입력하세요");
+var h=prompt("호수를 입력하세요");
+var b=prompt("건물 두께를 입력하세요");
+var wid=prompt("건물 가로폭을 입력하세요");
+
+
+document.write("<table border=\""+b+"px\" width=\""+wid+"px\">");
+for(var a=1; a<=f;a++){
+	document.write("<tr>");
+	for(var i=1;i<=h;i++){
+		document.write("<td width=\"100px\">"+a+"0"+i+"호</td>");//&nbsp 스페이스바 공용언어
+	}
+	document.write("</tr>");
+}
+document.write("</table>");
+</script>
+</head>
+<body>
+
+</body>
+</html>

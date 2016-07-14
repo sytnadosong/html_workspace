@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>단어게임</title>
+<style>
+#wrapper{
+	width:400px;
+	height:500px;
+	border:2px solid red;
+	margin:auto;
+}
+#wordView{
+	width:100%;
+	height:102px;
+	background:#66ffff;
+	font-size:50pt;
+	text-align:center;
+}
+#word_input{
+	width:99.2%;
+	height:90px;
+	background:yellow;	
+	font-size:40pt;
+}
+#feedback{
+	width:100%;
+	height:200px;
+	font-size:120pt;
+	text-align:center;
+	color:red;
+	font-weight:bold;
+}
+#score{
+	width:100%;
+	height:70px;
+	font-size:50pt;
+	text-align:center;
+	color:red;
+	font-weight:bold;
+}
+</style>
+<script>
+var count=0; //배열의
+var word = new Array(); //크기를 정하지않은 배열공간선언
+word[0]="광화문";
+word[1]="마우스";
+word[2]="택시";
+word[3]="몽땅연필";
+word[4]="무지개";
+word[5]="어벤져스";
+word[6]="스마트폰";
+word[7]="컴퓨터";
+word[8]="무궁화";
+word[9]="제주도";
+
+function init(){
+	//게임에 사용할 단어를메모리에 미리 확보해놓자!!
+	var wordView=document.getElementById("wordView");
+	wordView.innerText=word[count];
+	//커서를 올려놓자!!
+	var word_input=document.getElementById("word_input");//바로 커서 뜨게 만듬
+	word_input.focus();//바로 커서 뜨게 만듬2
+}
+//키보드를눌렀다 땔때, 아래의 함수 호출함!!
+function enter(){
+	var key=event.keyCode;//사용자가 입력한 키보드의 아스키값반환
+	
+	//alert("당신이 입력한 키보드의 아스키코드값은"+key);
+
+	if(key==13){//if(엔터치면..){alert("키보드 눌렀어?")
+		document.getElementById("wordView").value=;
+	}
+	
+}
+</script>
+</head>
+
+<body onLoad="init()">
+	<div id="wrapper">
+		<div id="wordView"></div>
+		<input type="text" id="word_input" onKeyUp="enter()">
+		<div id="feedback"></div>
+		<div id="score">20점</div>
+	</div>
+</body>
+
+</html>

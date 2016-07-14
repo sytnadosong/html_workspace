@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>좌표따라 움직이기</title>
+<style>
+/*
+html 태그중에 같은 라인에는 절대로 다른 태그가 존재할 수 없도
+록 배척하는 특징을 갖는 태그가 여러개 있다..이러한 특징을
+block 이라 한다!!
+
+*/
+#wrapper{
+	width:1004px;
+	height:700px;
+	border:2px solid blue;
+	margin:auto;
+	
+}
+#stage{
+	width:800px;
+	height:700px;
+	background:yellow;
+	border:1px solid red;
+	float:left; /*div를 띄운다!!*/
+}
+#info{
+	width:200px;
+	height:700px;
+	background:#99ff66;
+	float:left;
+}
+</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="stage"></div>
+		<div id="info">
+			<input type="button" value="Start">
+			<input type="button" value="Clear">
+			<div id="pos">
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+			[x=120, y=340]<p>
+[x=120, y=340]<p>[x=120, y=340]<p>[x=120, y=340]<p>[x=120, y=340]<p>[x=120, y=340]<p>[x=120, y=340]<p>[x=120, y=340]<p></div>
+			<p>
+		</div>
+	</div>
+	
+</body>
+
+</html>

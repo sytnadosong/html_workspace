@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body{margin:0px;}
+#stage{
+	width:100%;
+	height:800px;
+	background:yellow;
+	
+}
+</style>
+
+<script>
+	var stage;
+
+
+	var span;
+	var x=100;//전역변수인 이유는누적되어야하니까
+	/*총알을정의한다!!*/
+
+	function init(){
+		stage=document.getElementById("stage");
+
+		span=document.createElement("span");
+		span.innerText="●";
+		span.style.color="red";
+		span.style.position="relative";
+		span.style.left=x+"px";
+		span.style.top=100+"px";
+				
+		stage.appendChild(span);
+		move();
+	}
+
+	function move(){
+		x+=10;
+		span.style.left=x+"px";
+		setTimeout("move()",10);
+	}
+
+
+</script>
+
+</head>
+
+<body onLoad="init()">
+<div id="stage"></div>
+</body>
+
+</html>

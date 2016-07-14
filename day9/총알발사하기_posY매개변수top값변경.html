@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>총알 발사하기</title>
+<style>
+body{margin:0px;}
+#stage{
+	width:100%;
+	height:800px;
+	background:yellow;
+	
+}
+</style>
+
+<script>
+var stage;
+
+function init(){
+	//거푸집에서 총알 한개를 생성!!
+	for(var i=0;i<100;i++){
+	var b=new Bullet(20*i);
+	b.init();
+	}
+}
+
+
+/*아래의 코드는지금 당장 사용할 총알 자체가아닌 장차총알을생성해낼 틀이다!!*/
+var Bullet=function(posY){
+	//객체의 특징에 대한 값을담고 있다고하여 속성이라한다.
+	//property라 표기한다
+	this.span;
+	this.x=100;//전역변수인 이유는누적되어야하니까
+	this.y=posY;
+	/*총알을정의한다!!*/
+
+//객체 안에 들어있는 함수는 method 메서드라 한다!!
+//method(방법) : 객체의동작 방식을결정하는로직이 들어있기 때문에..
+	this.init=function(){
+		
+		this.span=document.createElement("span");
+		this.span.innerText="●";
+		this.span.style.color="red";
+		this.span.style.position="relative";//absolute 스크린 중심. 지구와 나의 위치개념. 게임에서는 absolute
+		this.span.style.left=this.x+"px";
+		this.span.style.top=this.y+"px";
+		
+		stage=document.getElementById("stage");
+		stage.appendChild(this.span);
+		this.move();
+	}
+
+	this.move=function(){
+		var me=this;// 꼼수//전역변수화 할 경우 this.me=this;
+		this.x+=10;
+		this.span.style.left=this.x+"px";
+		setTimeout(function(){
+			me.move();//me를 this로 써야 문법적으로 일관성이있으나 function의 브레이스에 걸리므로 변수me로 치환한다
+		},100);
+	}
+}
+
+
+</script>
+</head>
+
+<body onLoad="init()">
+<div id="stage"></div>
+</body>
+
+</html>

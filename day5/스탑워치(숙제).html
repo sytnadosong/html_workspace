@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>스탑워치</title>
+<style>
+/*input{}*/
+#txt{
+width:200px;
+height:150px;
+font-size:40pt;
+font-weight:bold;
+color:red;
+background:yellow;
+text-align:right; /*내용물에 대한 우측 정렬*/
+}
+#txt_hh{
+width:200px;
+height:150px;
+font-size:40pt;
+font-weight:bold;
+color:red;
+background:yellow;
+text-align:right; /*내용물에 대한 우측 정렬*/
+}
+#txt_mm{
+width:200px;
+height:150px;
+font-size:40pt;
+font-weight:bold;
+color:red;
+background:yellow;
+text-align:right; /*내용물에 대한 우측 정렬*/
+}
+
+
+</style>
+<script>
+var ss=0;
+var mm=0;
+var hh=0;
+
+//문서가 모두읽혀졌으므로, 아래의 txt요소를 접근할수 있는시점
+
+function init(){
+	document.getElementById("txt").value=0;
+}
+//txt의 기존값을 증가값으로 대입
+var st
+ function start(){
+
+	ss++;
+	document.getElementById("txt").value=ss;
+	st=setTimeout("start()",100);	//버튼을 못누르게 비활성화시키기
+	document.getElementById("bt_start").disabled=true;
+ }
+
+ function stop(){
+	clearTimeout(st); //기존 셋타임 아웃에 의한 자동호출을 중지!
+	document.getElementById("bt_start").disabled=false;
+	//비활성화?? 아니오->활성화
+ }
+
+</script>
+</head>
+<body onLoad="init()"> 
+	<input type="text"  id="txt_hh" >
+	<input type="text"  id="txt_mm" >
+	<input type="text"  id="txt" >
+	<input type="button" id="bt_start" value="시작" onClick="start()">
+	<input type="button" id="bt_stop" value="정지" onClick="stop()">
+</body>
+</html>

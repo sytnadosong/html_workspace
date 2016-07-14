@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>변수의 생명력</title>
+<script>
+var x=3;
+
+function test(){
+	//var k=5; 지역변수
+	x=5;
+}
+
+test();
+
+/*if(true){
+	var a=3;
+	*/ //이건 왜  쓰인건가
+
+}
+
+//var x=3; 전역변수는 브라우저 창이 종료되면 프로그램이 종료 되면 생명력이 김
+//지역변수는 10번~12번까지에서만 산다. 
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

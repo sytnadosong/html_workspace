@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>메모리 회원관리 final</title>
+<style>
+#wrapper{
+	width:650px;
+	height:600px;
+	border:2px solid red;
+	margin:auto;
+}
+#leftSide{
+	width:150px;
+	height:600px;
+	background:#99ccff;
+	float:left;
+}
+#rightSide{
+	width:500px;
+	height:600px;
+	background:#3366cc;
+	float:left;
+}
+#up{
+	width:100%;
+	height:30px;
+	background:#ffffcc;
+}
+#down{
+	width:100%;
+	height:570px;
+	overflow:scroll;
+}
+/*ul의 도트 없애기*/
+
+ul{
+	list-style:none;
+	border: 1px solid red;
+	padding:30px;
+}
+/*모든텍스트박스의 크기 조정
+스타일 시트에서 점을 찍고 나만의 스타일클래스를 정의할수 있다.
+*/
+
+/*input:text{
+
+}*/
+
+.inputStyle{
+	width:100px;
+	border:1px solid #cccccc;
+}
+</style>
+
+<script></script>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div id="leftSide">
+		<ul>
+			<li>ID : <input type="text" class="inputStyle"></li>
+			<li>PWD : <input type="text" class="inputStyle"></li>
+			<li>Name : <input type="text" class="inputStyle"></li>
+			<li>성금 : <input type="text" class="inputStyle"></li>
+			<li>
+				<input type="button" value="등록">
+				<input type="button" value="등록">
+			</li>
+		</ul>
+	</div>
+	<div id="rightSide">
+		<div id="up"></div>
+		<div id="down"></div>
+	</div>
+</div>
+</body>
+
+</html>

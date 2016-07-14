@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>우주선 움직이기</title>
+<style>
+#stage{
+	width:1000px;/*게임에서는 px이 정해져야함.*/
+	height:800px;
+	background:yellow;
+}
+
+</style>
+<script src="./lib/Flame.js"></script>
+<script src="./lib/Bullet.js"></script>
+<script>
+//위의 <script src="../lib/Bullet.js"> 는실행 타이밍에 여기로 들어온다
+
+/*사물은상태와동작으로구성된다.
+	아래의클래스 안에 변수와 함수를 기재한다.*/
+
+var stage;
+var s;
+var f;// = new Flame(stage,50,50,60,216.5);
+
+var Ship =function(width,height,x,y,area){
+
+	this.width=width;
+	this.height=height;
+	this.x=x;
+	this.y=y;
+	this.img;
+	this.area=area;
+
+
+	this.init=function(){
+			
+			this.img=document.createElement("img");
+			this.img.src="../images/ship.png";
+			this.img.style.width=this.width+"px";
+			this.img.style.height=this.height+"px";
+			this.img.style.position="absolute";
+			this.img.style.left=this.x+"px";
+			this.img.style.top=this.y+"px";
+
+			this.area.appendChild(this.img);
+
+			this.go();
+	}
+	//방향이동
+	this.go=function(){
+		this.img.style.left=this.x+"px";
+		this.img.style.top=this.y+"px";
+	}
+
+	/*하지마.
+	//아래로 이동
+	this.moveDownward=function(){
+		this.img.style.left=this.x+"px";
+		setTimeout(,10);
+	}
+
+
+	//좌측이동
+
+	//위로 이동
+
+	//우측이동
+	this.moveRight=function(){
+		this.img.style.left=this.x+"px";
+		setTimeout(,10);
+	}
+	*/
+}
+//Load이벤트 처리
+window.addEventListener("load",function(){
+	
+	stage=document.getElementById("stage");
+	stage.style.width=1000+"px";
+
+
+	s = new Ship(100,80,100,200,stage);
+	s.init();
+	
+	//불꽃화염나오기
+	//var Flame=function(a,w,h,posX,posY){
+
+	f = new Flame(stage,50,50,s.x-40,s.y+16.5);
+	f.init();	
+		
+	//우주선 등장
+
+});
+//마우스 이벤트 처리
+
+window.addEventListener("keydown",function(){
+	if(event.keyCode==32){//space var 누르면...
+		var b = new Bullet(stage,s.x,s.y);//(stage, 우주선의 y값);
+		b.init();
+	
+	}else if(event.keyCode==37){//좌로
+		s.x-=10;
+		s.go();
+		f.img.style.left=s.x-40+"px";
+		f.img.style.top=s.y+16.5+"px";
+
+	}else if(event.keyCode==38){//아래로
+		s.y-=10;
+		s.go();
+		f.img.style.left=s.x-40+"px";
+		f.img.style.top=s.y+16.5+"px";		
+	}else if(event.keyCode==39){//우측으로
+		//우주선 x좌표값증가
+		s.x+=10;
+		s.go();
+		f.img.style.left=s.x-40+"px";
+		f.img.style.top=s.y+16.5+"px";		
+	}else if(event.keyCode==40){//위로
+		s.y+=10;
+		s.go();
+		f.img.style.left=s.x-40+"px";
+		f.img.style.top=s.y+16.5+"px";		
+	}
+});
+
+
+//stage
+//<과제>body onLoad 사용해서 작성해보기
+
+</script>
+
+</head>
+
+<body>
+	<div id="stage"></div>
+</body>
+
+</html>

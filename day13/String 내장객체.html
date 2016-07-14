@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>String 내장객체</title>
+
+<script>
+var Mario=[];
+/*
+자바스크립트 자체적으로 이미 내장된 객체가 몇개 있는데 그 중 String 객체를 학습한다!!
+주의) 모든 객체가 생성시 new를 요구하는것은 아니다...
+	명시적(explicit),	암시적(implicit)
+*/
+
+var a="대한민국국국"; //암시적,묵시적 생성된
+//문자열의 길이를 출력하시오. 4
+
+var str = "지난...여름에 찍은 사진.jpg";
+
+document.write("문자열의 길이는"+a.length+"<br>");
+
+document.write("인덱스1번의 문자값은"+a.charAt(1)); //대한민국 문자배열의 몇번째인가
+
+
+
+//charAt을 이용 모든 문자를 출력
+
+for(var i=0;i<a.length;i++){
+	document.write(a.charAt(i));
+}
+
+//"국"은 순서는네번째지만 index는 3임.
+
+
+//원하는 문자의 index를추출하시오.
+document.write(a.indexOf("국")+"<br>");
+
+//가장 마지막으로발견된문자의 index추출
+//document.write(a.lastIndexOf("국"+"<br>");
+
+//document.write(a.replace("대","무지큰"+"<br>"));
+
+document.write(str.substring(6,8));
+
+//str 문자열내에서 확장자만추출하시오..(항상 변경 가능성을 염두해 두고 작성하라)
+document.write(str.substring(str.length-3,str.length));//1
+document.write(str.substring(str.lastIndexOf(".")+1,str.length));//2
+
+var result = str.substring(str.lastIndexOf(".")+1,str.length);
+document.write(result);//3
+
+//test.png를대상으로 파일명과확장자를 각각별도로출력하시오.
+
+//split()을 적용해보자!!
+
+str.split();
+
+var arr=b.split(".");//["test","png"]
+document.write(arr[0]+"<br>");
+document.write(arr[1]+"<br>");
+
+
+//test.png를 전부 대문자로 변환하여 출력하시오.
+document.write(toUpperCase);
+
+var s1=b.toUpperCase();
+
+document.write(s1+"<br>");
+
+//대부분의 객체지향언어에는
+//일단
+//한번메모리에 올라온 스트링객체는 변경이 불가능하다(immutable)
+
+var c="	king";
+document.write("공백 제거 전의길이는  "+c.length+"<br>");
+//제거후의 길이
+
+var s2=c.trim(); //공백이 제거된새로운 문자열을반환
+document.write("공백이제거된"+c.trim+"<br>");
+document.write(c.trim(0);//둘다 메모리에는 올라왔으나
+document.write(s2);//둘다 메모리에는 올라왔으나 추후에 제어가 가능
+
+
+</script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

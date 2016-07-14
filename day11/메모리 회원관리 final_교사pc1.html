@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>메모리 회원관리 final</title>
+<style>
+#wrapper{
+	width:650px;
+	height:600px;
+	border:2px solid red;
+	margin:auto;
+}
+#leftSide{
+	width:150px;
+	height:600px;
+	background:#ccffff;
+	float:left;
+}
+#rightSide{
+	width:500px;
+	height:600px;
+	background:yellow;
+	float:left;
+}
+#up{
+	width:100%;
+	height:30px;
+	background:#99ff33;
+	text-align:center;
+}
+#down{
+	width:100%;
+	height:570px;
+	overflow:scroll;
+}
+/*ul 의 도트 없애기*/
+ul{
+	list-style:none;
+	border:1px solid red;
+	padding:10px;
+}
+
+/*모든 텍스트박스의 크기 조정
+ 스타일 시트에서 .점을 찍어서 나만의 스타일 클래스를 정의할 수 있다.
+*/
+.inputStyle{
+	width:100px;
+	border:1px solid #cccccc;
+}
+</style>
+<script>
+var txt_id, txt_pw,txt_name, txt_money, txt_keyword;
+var bt_regist, bt_list, bt_search;
+
+window.addEventListener("load", function(){
+	txt_id=document.getElementById("txt_id");
+	txt_pw=document.getElementById("txt_pw");
+	txt_name=document.getElementById("txt_name");
+	txt_money=document.getElementById("txt_money");
+	txt_keyword=document.getElementById("txt_keyword");
+
+	bt_regist=document.getElementById("bt_regist");
+	bt_list=document.getElementById("bt_list");
+	bt_search=document.getElementById("bt_search");
+
+	//버튼들에 대한 이벤트 등록
+	bt_regist.addEventListener("click", function(){
+		regist();
+	});
+	
+	bt_list.addEventListener("click", function(){
+		getList();
+	});
+
+	bt_search.addEventListener("click", function(){
+		getListBySearch();
+	});
+
+
+});
+
+//등록
+function regist(){
+	alert("등록을 원해?");
+}
+
+//리스트보기
+function getList(){
+}
+
+//검색하기 
+function getListBySearch(){
+}
+
+
+</script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="leftSide">
+		<ul>
+			<li>ID : <input type="text" id="txt_id" class="inputStyle"></li>			
+			<li>PWD : <input type="password" id="txt_pw" class="inputStyle"></li>
+			<li>Name :<input type="text" id="txt_name" class="inputStyle"></li>
+			<li>성금 : <input type="text" id="txt_money" class="inputStyle"></li>
+			<li>
+				<input type="button" value="등록" id="bt_regist">
+				<input type="button" value="목록" id="bt_list">
+			</li>
+		</ul>	
+	</div>
+	<div id="rightSide">
+		<div id="up">
+			<input type="text" id="txt_keyword">
+			<input type="button" value="검색"  id="bt_search">
+		</div>
+		<div id="down"></div>
+	</div>
+</div>
+
+</body>
+</html>

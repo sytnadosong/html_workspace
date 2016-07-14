@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>배열이용갤러리</title>
+<style>
+#wrapper{
+	width:400px;
+	height:500px;
+	border:2px solid red;
+	margin:auto;
+}
+
+#controller button{
+	width:70px
+	margin:auto;
+</style>
+
+<script>
+var x=0;
+
+var photo = new Array(10);
+photo[0]="apartment.jpg";
+photo[1]="building.jpg";
+photo[2]="city.jpg";
+photo[3]="complexofapartment.jpg";
+photo[4]="officetel.jpg";
+photo[5]="jusangbokhap.jpg";
+photo[6]="house.jpg";
+photo[7]="village.jpg";
+photo[8]="pictureofapartment.jpg";
+photo[9]="foreign apartment.jpg";
+
+
+function prev(){
+	var big=document.getElementById("big");
+
+}
+
+function next(){
+	x++;
+	document.getElementById("wordView").innerText=photo[x];
+}
+
+</script>
+</head>
+
+<body >
+	<img src="../images/apartment.jpg" width="700px" id="photo">
+	<div id="wrapper"></div>
+	<div id="controller">
+		<input type="button" value="이전사진"onClick="prev()">
+		<input type="button" value="다음사진"onClick="next()">
+</body>
+
+</html>

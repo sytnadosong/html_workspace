@@ -1,0 +1,6 @@
+<미로게임>
+stage의 ㄴ
+width
+height는
+정해두지 않겠다.
+

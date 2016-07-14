@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>화면에 도장찍기</title>
+<style>
+boby{
+	margin:0px
+}
+div{
+	background:yellow;
+	height:850px;
+}
+</style>
+<script>
+var wrapper;
+var w=100; //도장의 가로폭!! 너비!
+var h=100;
+//마우스를 클릭하며, 동적으로(=runtime:실행시) 원하는 tag를 올려놓자!!
+function init(){
+	wrapper=document.getElementById("wrapper");
+}
+function stamp(){
+	//div안에다가 이미지를 출력하자!!
+
+	//document.write("안녕"); //전체출력 다 롸, 태그 내의 부분 출력은 innertext//<div>"안녕"</div>가능은하지만 디자인다.
+
+	//wrapper.innerText="<img src =\"..images/stamp.png\">";//위치가 부자유스러움. 관리자도구창
+
+	// 결론: 문자열로 도장찍기는 무리가 있다..
+	//왜?? 위치문제도 그렇고 누적부분도 그렇고...
+	//해결책?? 진짜 태그를 생성하겠다!! 실행타임에 !!
+
+	//문서내에태그를생성하여 부착하자!!
+	var img=document.createElement("img");
+	img.src="../images/stamp.png";//생성은이미지에 경로 등록
+	img.style.width=w+"px";
+	img.style.height=h+"px";
+	img.style.position="absolute";//절대위치지정!!
+	img.style.left=(event.clientX-w/2)+"px"	//마우스 클릭시의 x좌표
+	//alert("이미지높이는"+img.style.height);
+	img.style.top=(event.clientY-h/2)+"px"		//마우스 클릭시의 y좌표
+
+	//문서내 div에 부착한다!!- 생성된 img를 자식요소로 등록
+	wrapper.appendChild(img);
+}
+
+</script>
+</head>
+<body onLoad="init()" onMouseMove="stamp()">
+<div id="wrapper"></div>
+
+</body>
+</html>

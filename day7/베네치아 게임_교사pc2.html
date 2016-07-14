@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>베네치아 게임</title>
+<style>
+#wrapper{
+	width:900px;
+	height:750px;
+	margin:auto;
+	background:yellow;
+}
+#stage{
+	/*background:pink;*/
+	width:100%;
+	height:550px;
+	background-image:url("../images/taja.png");
+}
+#controller{
+	/*background:yellow;*/
+	width:100%;
+	height:150px;
+	text-align:center;
+}
+#info{
+	width:400px;
+	height:162px;
+	/*background:green;*/
+	float:left;
+}
+
+#hp{
+	width:176px;
+	height:162px;
+	float:left;
+}
+#keyword{
+	width:350px;
+	height:50px;
+	background:#6699cc;
+	font-size:35pt;
+}
+</style>
+<script>
+var word=[
+	"가",
+	"나",
+	"다",
+	"라",
+	"마",
+	"바",
+	"사",
+	"아",
+	"자"
+];
+var hp;
+//var hoArray=new Array(4); //호수 배열 for문 안으로
+var floorArray=new Array(3); //층수 배열
+var stage;
+var wordArray=new Array(word.length);
+var step=10; // 몇픽셀씩 내려오게 할지를결정하는변수
+var st; //셋타임 아웃을 가리키는변수
+var keyword; //단어 입력폼!!
+var score; //점수 텍스트 박스
+var jumsu=0;
+var limit; // 단어들이 넘지 말아야할 y축의 한계점
+
+function init(){
+	hp=document.getElementById("hp");
+	stage=document.getElementById("stage");
+	keyword=document.getElementById("keyword");
+	score=document.getElementById("score");
+
+	// 현재 stage의 높이를구해보자!!
+	//alert("stage의 높이는"+stage.style.height)
+	limit=parseInt(stage.style.height);
+
+	//**단독적으로 존재할 수없고 html에 기생하는 이런언어를 스크립트라고 함. book의 쪼가리 script
+	createHp();//체력 생성 및보여주기
+	createTag();// 단어 생성 및 보여주기
+}
+
+//테이블 생성 
+function createHp(){
+	//문서가 로드되면 hp를 표현하는 테이블을 3*4개로 구성해본다
+	var table=document.createElement("table");
+	table.style.border="2px solid red";
+	
+	for(var a=0;a<3;a++){
+		var tr=document.createElement("tr");	
+
+		var hoArray=new Array(4); //호수 배열, 반복생성하는 td를 저장해놓음
+
+		for(var i=0;i<4;i++){
+			var td=document.createElement("td");
+			td.style.width=50+"px";
+			td.style.height=50+"px";
+			td.style.background="red";
+			tr.appendChild(td);
+
+			hoArray[i]=td;
+		}
+
+		//한줄이완성되었으므로, 큰상자에 담자!!
+		floorArray[a]=hoArray;
+
+		//테이블 조합하기!!
+		table.appendChild(tr);
+	}
+	//hp div에 table 추가!!
+	hp.appendChild(table);
+}
+
+function test(){
+	floorArray[2][2].style.background="#ffffff";
+}
+
+/*게임이 시작되면 단어가등장하되 점점내려오기...y값(top값)이점점증가함*/
+function gameStart(){
+
+	fall();
+	keyword.focus();
+}
+//innertext 는 <>를 문자로 생각함. innerhtml은 <>를 태그로 생각. markup할수있다.
+
+function createTag(){
+	//span 태그를단어만큼생성하여, stage에부착하자!!
+	for(var i=0; i<word.length; i++){//length 다음에는 =는 없다. 나의 전언 ㅋ: i가0부터 시작하므로...
+		//랜덤값 구하기: 0~~99 사이에서..
+		var r=parseInt(Math.random()*100); //0.xxx 난수
+
+		console.log(r)
+		
+		var span=document.createElement("span");//제어하는것이 목적임
+		span.style.position="relative";//절대위치는안됨
+		span.style.left=(50*i)+"px";
+		span.style.top=-30+"px";
+		span.innerText=word[i];
+		stage.appendChild(span);
+
+		//span 지역변수이기 때문에, 후추  for문이 다 돌아간 후에는
+		//접근할 수 없다!! 따라서 전역 배열에 담아둬야 한다!!
+		wordArray[i]=span;
+	}//반복하고 싶거나 제어하고싶으면 브레이스로 일단 감싸라.
+}
+//텍스트 내려오는 효과주기
+
+function fall(){
+	//step+=10;
+
+	for(var i=0;i<word.length;i++){	
+		wordArray[i].style.top=parseInt(wordArray[i].style.top)+step+"px";//(x+=1) 뒤에 px이 붙어 있으므로 parseInt로 실수화
+	}
+	//------ for문 숙제
+	// 현재 내려오고 있는 단어가 limit를 넘어섰는지 조사!!
+	if(wordArray[1].style.top)>=limit){
+		//alert("도달했네요");
+		floorArray[0][0].style.background="#ffffffff";
+	}
+	//------- 테이블색 변하게 하기
+	var level=document.getElementById("speed").value;
+	console.log("현재 레벨값은"+level);
+	st=setTimeout("fall()",level);//문서내의 select라는녀석의 값
+}
+
+function pause(){
+	clearTimeout(st);//멈춤의대상이되는 settimeout 인수로..
+}
+
+//여러 키보드값 중 엔터키값에만 반응을 보이자!!
+
+function enter(){
+	if(event.keyCode){//.은 소유권, event라는객체에 keyCode라는속성
+		//alert("엔터쳤어?");
+
+		//현재존재하는단어마다입력한값과 비교를 한다!!
+		//같으면?? 단어 사라지고, 점수올리고...
+		for(var i=0;i<wordArray.length; i++){
+			if(wordArray[i].innerText == keyword.value){
+				//alert("맞네요!!");
+				//stage.removeChild(wordArray[i]); //appendChild()의 반대!! :객체를 배우면 편해짐
+				wordArray[i].innerText="";
+				keyword.value="";//keyword는 txt박스이므로
+				jumsu+=10;
+				score.value=jumsu;
+				//기존점수보다 10점올리기
+			}
+		}
+	}
+}
+
+</script>
+</head>
+<body onLoad="init()">
+	<div id="wrapper">
+		<div id="stage" style="height:550px"></div>
+		<div id="controller">
+			<div id="info">
+				<select id="speed">
+					<option value="1500">1단계</option>
+					<option value="1200">2단계</option>
+					<option value="900">3단계</option>
+					<option value="500">4단계</option>
+					<option value="250">5단계</option>
+				</select>	
+				<input type="button" value="Start" onClick="gameStart()">
+				<input type="button" value="pause" onClick="pause()">
+				<input type="text" value="0" size="5" id="score"> 점<br>
+				<input type="text" id="keyword" onKeyUp="enter()">
+			</div>
+			<div id="hp"></div>
+		</div>
+	</div>
+</body>
+</html>

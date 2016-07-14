@@ -1,0 +1,124 @@
+--우리가 만들지 않은 이미, 시스템이 생성한 각종 메타정보 테이블
+--이 오라클에는 지원되는데, 이 테이블을 가리켜 딕셔너리라 한다.
+--이때, 현재 접속계정이 일반유저인 경우 이 시스템 딕셔너리의 명칭
+--은 주로 user_로 시작한다...
+selelct table_name from user_tables
+
+--특정 테이블생성시 어떠한 컬럼으로, 어떠한 자료형으로 생성했는지 알아보려면??
+--테이블의 생김새를 알아보려면??
+desc member;
+
+23살짜리 배트맨
+
+insert into member(name,age) values('배트맨' ,23); //데이터는 쌍따옴표 안씀 홑따옴표 씀
+insert into member(name,age) values('슈퍼맨' ,35);
+insert into member(name,age) values('엑스맨' ,20);
+insert into member(name,age) values('배트맨' ,23);
+
+------------------------------------------------------------------------------------------_4
+
+ORA-12560: TNS:protocol adapter error
+
+
+Enter user-name: java
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: java/java
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> select * from member
+  2  ;
+
+no rows selected
+
+SQL> insert into member(name,age) values('배트맨' ,23);
+
+1 row created.
+
+SQL> insert into member(name,age) values('슈퍼맨' ,35);
+
+1 row created.
+
+SQL> insert into member(name,age) values('엑스맨' ,20);
+
+1 row created.
+
+SQL> insert into member(name,age) values('배트맨' ,23);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from member;
+
+NAME                                            AGE
+---------------------------------------- ----------
+배트맨                                           23
+슈퍼맨                                           35
+엑스맨                                           20
+배트맨                                           23
+
+--- 
+
+create table member2(
+ID number primary key  id만들거야
+,name varchar2(20)	NAME도 만들거야
+,age number		AGE도 만들거야
+);
+
+
+primary key 중복이 가능해지지 않도록 제한사항
+
+--테이블생성시 지정한 primary key는 제약조건이라는
+--제약사항 중 하나로서, 절대로 중복된 데이터를 허용하지않으면서
+--동시에 비어있는 데이터를 허용하지도않는다..
+--즉 데이터 입력을 상당히 까다롭게 제한하는 조건이다...
+--왜??결함이 없는 데이터만 받아들이기 위해...
+
+
+SQL> elete from member where name='배트맨';
+SP2-0734: unknown command beginning "elete from..." - rest of line ignored.
+SQL> ---뒤늦은 후회로 인하여, 기존에 없던 컬럼을 이제서야 추가함
+SQL> alter table meeber
+  2  add ID number
+  3
+SQL> ---망했음 버리자
+SQL> ---데이타를 구붅하기 위한 용도의 컬럼을무조건 추가해야 한다.
+SQL> ---앞으로 테이블제작시...
+SQL> create table member2(
+  2  ID number primary key
+  3
+SQL> spool' C:\ORACLE_STUDY\spool\4일차.txt'
+SP2-0606: Cannot create SPOOL file " C:\ORACLE_STUDY\spool\4일차.txt"
+SQL> spool ' C:\ORACLE_STUDY\spool\4일차.txt'
+SP2-0606: Cannot create SPOOL file " C:\ORACLE_STUDY\spool\4일차.txt"
+SQL> spool ' C:\ORACLE_STUDY\spool\day4.txt'
+SP2-0606: Cannot create SPOOL file " C:\ORACLE_STUDY\spool\day4.txt"
+SQL> SPOOL 'C:\ORACLE_STUDY\spool\4일차.TXT'
+
+
+
+---------------------------
+
+
+마틴이근무하는부서명과 위치를 출력하시오.
+
+ SELECT DNAME,LOC FROM DEPT
+ WHERE DEPTNO=(
+ SELECT DEPTNO FROM EMP
+ WHERE ENAME='MARTIN'
+ ;
+
+SELECT ENAME,SAL,DNAME,LOC
+FROM EMP,DEPT
+
+SELECT ENAME,SAL,DNAME,LOC
+FROM EMP,DEPT
+WHERE DEPT.DEPTNO=EMP.DEPTNO

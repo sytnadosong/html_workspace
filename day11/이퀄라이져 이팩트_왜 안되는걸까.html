@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>이퀄라이저 이펙트</title>
+<style>
+body{margin:auto}
+#stage{
+	width:700px;
+	height:500px;
+	background:#99ffcc;
+}
+</style>
+<script>
+var bgArray=["red","orange","yellow","green","blue","navy","purple"];
+var rectArray=new Array();//사각형을담아놓기위한 배열!!
+									//그래야 다른 함수에서 보이니깐
+
+var Rect = function(stage,bg,width,height,x,y){
+	this.stage=stage;
+	this.div;
+	this.bg=bg;
+	this.width=width;
+	this.height=height;
+	this.x=x;
+	this.y=y;
+	this.targetY=0;//사각형이 늘어날 y축 좌표
+	this.a=0.9;
+	this.posY=40;
+
+	this.init=function(){
+		var me=this;
+		this.div=document.createElement("div");
+		this.div.style.background=this.bg;
+		
+		this.div.style.position="absolute";
+		this.div.style.width=this.width+"px";
+		this.div.style.height=this.height+"px";
+
+		this.div.style.left=this.x+"px";
+		this.div.style.top=this.y+"px";
+
+		this.stage.appendChild(this.div);
+
+		this.div.addEventListener("mouseover",function(){
+			
+			//alert(me.bg+"올렸어?");
+			me.targetY=500;
+		});
+
+		this.div.addEventListener("mouseout",function(){
+			me.targetY=0;
+			me.div.style.height=40+"px";
+		});
+
+		this.move();
+	}
+
+	this.move=function(){
+		var me=this;
+	//지정된targetY만큼 height를 높이자
+	//내위치=목적지-비율계수*(목적지-내위치)
+		var y=parseInt(this.div.style.height)+5;
+		this.div.style.height=this.targetY-this.a*(this.targetY-y)+"px";
+
+		setTimeout(function(){
+			me.move();
+		},20);
+	}
+}
+
+window.addEventListener("load",function(){
+	init();
+});
+
+function init(){
+	for(var i=0;i<bgArray.length;i++){
+		var rect = new Rect(stage,bgArray[i],100,40,i*100,0);
+		rect.init();
+
+		rectArray[i]=rect;
+	}
+	dance();
+}
+//일정한 주기 간격으로, 사용자가 마우스를 올려놓지 않더라도, 
+//각 사각형이 보유한 targetY의 값을 랜덤하게 부여하자!!
+function dance(){
+	for(var i=0; i<rectArray.length;i++){
+		rectArray[i].targetY=getRandomByRange(500,40); //40~500
+	}
+	setTimeout("dance()", 50);
+}
+</script>
+
+</head>
+
+<body>
+<div id="stage"></div></body>
+
+</html>

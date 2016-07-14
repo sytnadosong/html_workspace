@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>부드러운 움직임</title>
+<style>
+
+#baby{
+	position:absolute;
+	width:300px;
+	left:0px;
+	top:200px;
+}
+</style>
+
+<script>
+var baby;
+var targetX=700;
+var targetY=0;
+var a=0.9;
+
+function init(){
+	baby=document.getElementById("baby");
+
+
+	setTimeout("movetopoint()",10);
+}
+
+
+//목표지점- 비율계수*(목표지점-나의위치)
+function movetopoint(){
+	//alert(parseInt(pica.style.left));//px가사라짐
+	
+	baby.style.left=targetX-a*(event.clientX-parseInt(baby.style.left))+"px"; 
+	
+	baby.style.top=targetY-a*(event.clientY-parseInt(baby.style.top))+"px"; 
+	
+}
+
+	
+</script>
+</head>
+<body onLoad="init()" onMouseDown="movetopoint()">
+<div></div>
+<img src="../images/baby.jpg" id="baby" style="position:absolute;left:0px;top:200px;">
+
+
+</body>
+
+</html>

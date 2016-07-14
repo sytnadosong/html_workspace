@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>제이쿼리 실습</title>
+<style>
+#panel, #flip {
+    padding: 5px;
+    text-align: center;
+    background-color: #e5eecc;
+    border: solid 1px #c3c3c3;
+}
+
+#panel {
+    padding: 50px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $("#panel").slideUp("slow");
+    });
+});
+</script>
+
+</head>
+
+</script>
+
+</head>
+
+<body>
+<pre>
+
+제이쿼리란?
+이미 미국인1인이 자바스크립트를 모르는 사람들을위해,
+유용한 기능을 함수화 시켜놓은 기능집합(라이브러리)를 의미한다.
+
+<p>
+옛날기술인데, 왜 이제와서 인기 있나?
+스티브잡스가 플래시를쓰레기라고외치고돌아가셨다.
+이때부터 스마트폰에서제일먼저퇴출되고, pc에서도 사라지고 있다.
+
+문제점?
+기존에담당하고있던 수많은애니메이션은 자바스크립트로 작성해야할상황이 발생, 이 업무는디자이너의업무이므로 업무 마비가오게됨
+
+이때 과거기술인제이쿼리를 다시금재조명하게 되었다..
+</pre>
+<div id="flip">Click to slide up panel</div>
+<div id="panel">Hello world!</div>
+
+</body>
+
+</html>

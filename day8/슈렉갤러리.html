@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>슈렉갤러리</title>
+<style>/*div의 넓이를  이미지 하나 감당할 크기로 만들자*/
+#wrapper{
+	width:500px;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:200px;
+	text-align:center;
+	font-size:15pt;
+
+}
+body{/*마진을0만듬 500*7=3500*/
+	margin:0px;
+}
+#box{
+	height:340px;
+	position:relative;
+	left:0px;
+	top:0px;
+}
+img{/*마진을0만듬 500*7=3500*/
+	margin:0px;
+}
+
+#mask{
+	width:500px;
+	height:340px;
+	overflow:hidden;
+
+}
+a{
+	text-decoration:none; /*밑줄 없애기*/
+	color:#000000;
+}
+/*a태그에 마우스올려 놓으면*/
+a:hover{
+	color:#ff9900
+}
+</style>
+<script>/*
+var box=new Array(7);
+box[1]=" src=../images/shurek/img01.jpg"
+box[2]=" src=../images/shurek/img02.jpg"
+var img;
+
+function init(){
+	for(var i=0;i<img.length;i++){
+		img=document.createElement("img");
+		img.src=box[i]
+		box.appendChild(img);
+	}
+}*/
+
+var arr = [
+	"../images/shurek/img0.jpg",
+	"../images/shurek/img1.jpg",
+	"../images/shurek/img2.jpg",
+	"../images/shurek/img3.jpg",
+	"../images/shurek/img4.jpg",
+	"../images/shurek/img5.jpg",
+	"../images/shurek/img6.jpg"
+];
+
+var box;
+var a=0.9; //부드러운정도를나타냄..(수학에서비율계수)
+var targetX=0; //box가도달할목표지점!!
+function init(){
+	box=document.getElementById("box");
+	box.style.width=500*arr.length+"px";
+
+	//이미지 생성!!
+	for(var i=0;i<arr.length;i++){
+		var img=document.createElement("img");
+		img.src=arr[i];
+		//img.style 안줘도 돌아감
+		box.appendChild(img);
+	}
+	move();
+}
+
+function showImg(j){
+	targetX = -j*500;
+}
+
+function move(){
+	box.style.left=targetX-a*(targetX-parseFloat(box.style.left))+"px";//이미지위치=(타켓-a*(타켓-나와의 남은거리));
+	console.log(box.style.left);
+	setTimeout("move()",10);
+}
+//box style sheet를 직접 div 태그 에다가 
+
+
+</script>
+
+</head>
+
+<body onLoad="init()">
+	<div id="wrapper">
+		<div id="mask">
+			<div id="box" style="position:relative;left:0px;top:0px"></div>
+		</div>
+		<a href="javascript:showImg(0)">●</a>
+		<a href="javascript:showImg(1)">●</a>
+		<a href="javascript:showImg(2)">●</a>
+		<a href="javascript:showImg(3)">●</a>
+		<a href="javascript:showImg(4)">●</a>
+		<a href="javascript:showImg(5)">●</a>
+		<a href="javascript:showImg(6)">●</a>
+	</div>
+</body>
+
+</html>

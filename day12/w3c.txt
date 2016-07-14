@@ -1,0 +1,25 @@
+http://www.w3schools.com/jsref/dom_obj_form.asp
+------------------------------
+w3c/javaScript Reference/HTML DOM object
+
+set or return
+
+할당하거나 가져오다
+------------------------------
+객체.
+속성:능력설명 :객체가 가지고 있는 변수
+행동
+
+
+
+----------------------------------------------------
+
+프로그램 회사는 API를 제공한다
+Application Programming Interface
+- 프로그램 개발시 사용되는 라이브러리
+
+API Document(라이브러리 설명서)
+
+
+*
+select DOM 찾아보세요.=>w3c

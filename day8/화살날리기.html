@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>화살날리기</title>
+<style>
+#sky{
+	width=100%;/*"1000px";*/
+	height=900px;
+}
+</style>
+
+<script>
+/*문서가 로드되면, span을 생성하며, 그 사이에 특수문자화살표 넣고, 날리세요!!
+function shoot(){
+
+	var span=document.createElement("span");
+	span.innerText="→";
+	span.style.left=parseFloat(span.style.left)+10+"px";
+	span.style.position="absolute";
+	setTimeout("shoot()",100);
+
+}*/
+var sky;//var sky;
+var Arrow=function(){
+	this.span;//var span;
+	//var spam;
+	this.x=0;//var x=0;
+
+	this.shoot=function(){//function shoot(){
+		sky=document.getElementById("sky");//sky=document.getElementById("sky");
+
+		this.span=document.createElement("span");//span=document.createElement("span");
+		this.span.innerText="--";//span.innerText="--";
+		this.span.style.fontSize="50pt";//
+		this.span.style.position="relative";//
+		this.span.style.left=200+"px";//
+		this.span.style.top=200+"px";//
+
+		/*spam=document.createElement("span");
+		spam.innerText="--";
+		spam.style.fontSize="50pt";
+		spam.style.color="red";
+		spam.style.position="relative";
+		spam.style.left=200+"px";
+		spam.style.top=600+"px";*/
+
+		//sky.appendChild(spam);
+		sky.appendChild(this.span);//
+		this.move();//move();
+	}
+
+	this.move=function(){//function move(){
+		var me=this;//지역변수라 var...(??)
+		this.x+=10;//
+		this.span.style.left=this.x+"px";//
+		//spam.style.left=2*x+"px";
+		setTimeout(function(){//"move()",50)	;
+			me.move();//this.move(); 강사님만의 방법
+		}, 50);
+	}
+}
+
+//위에서 정의한 화살 거푸짚으로부터 원하는화살 갯수를뽑아내서 날리자
+function test(){
+	for(var i=1;i<100;i++){
+		var a1=new Arrow();
+		a1.shoot(); //ai이 보유한함수를호출!!
+	}
+}
+</script>
+
+</head>
+<body onLoad="test()">
+<div id="sky"></div>
+</body>
+</html>

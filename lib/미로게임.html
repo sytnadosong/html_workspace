@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>미로게임</title>
+<style>
+body{margin:0px}
+#stage{
+	background:#ccffff;
+}
+
+</style>
+<script src="../lib/Maze.js"></script>
+<script src="../lib/Hero.js"></script>
+<script src="../lib/lib.js"></script>
+<script>
+var stage;
+var mario;
+var maze;
+var wallArr = new Array();
+
+window.addEventListener("load",function(){
+	init();
+	
+});
+
+function init(){
+	stage=document.getElementById("stage");
+
+	stage.style.width=screen.width+"px";
+	stage.style.height=800+"px";
+	stage.style.backgroundImage="url('../images/village.jpg')";
+
+
+	//미로 생성
+	var countY=0;//개행을 결정하는 변수 
+	var countX=0;//x를초기 위치로 둘 수 있는변수
+	var w=20;//미로의 가로 크기
+	for(var i=0;i<55*33;i++){
+		if(i%55==0){
+			countY++;//
+			countX=0;//i를쓰지않기 위해
+		}
+		maze = new Maze(stage,w,w,countX*(w+3)+10,countY*(w+3)+10);
+		maze.init();
+		countX++;
+	}
+
+	//주인공 등장!!
+	mario=new Hero(stage,w,w,100,50,"../images/mario.png");
+	mario.init();
+}
+
+//상하 좌우 이벤트 처리
+window.addEventListener("keydown",function(){
+	var key=event.keyCode;
+
+	switch(key){
+	case 37: mario.velX=-1;break;//goLeft();
+	case 38: mario.velY=-1;break;//goUp();
+	case 39: mario.velX=1;break;//goRight();
+	case 40: mario.velY=1;break;//goDown();		
+	}
+
+	for(var i=0; i<maze.wallArr.length; i++){
+
+		var result=hitTest(mario.img, maze.wallArr[i].div);		
+		console.log("충돌했어요");
+	
+	}
+});
+
+window.addEventListener("keyup",function(){
+	var key=event.keyCode;
+
+	if(key==37||key==39){
+		mario.velX=0;
+	}
+	if(key==38||key==40){
+		mario.velY=0;
+	}
+});
+
+/*
+	for(var i=0; i<enemyArray.length; i++){
+					
+		if(enemyArray[i] !=undefined){
+
+			var result=hitTest(this.span , enemyArray[i].img);			
+
+			if(result){
+				
+				this.stage.removeChild(this.span);
+				clearTimeout(this.st);
+
+				
+				this.stage.removeChild(enemyArray[i].img);					
+				clearTimeout(unit.st);
+				delete enemyArray[i]; 
+			}
+		}
+	}	
+*/
+function getMove(){
+	
+
+}
+/*
+function goLeft(){
+	mario.velX=-1
+	if(mario.x==){
+		mario.velX=0;
+	}
+}
+/*
+function goUp(){
+	mario.velY=-1
+	if(==){
+		mario.velY=0;
+	}
+
+}
+
+function goRight(){
+	mario.velX=1
+	if(==){
+		mario.velX=0;
+	}
+}
+
+function goDown(){
+	mario.velY=1
+	if(==){
+		mario.velY=0;
+	}
+}
+*/
+
+</script>
+
+
+
+</head>
+
+<body>
+<div id="stage"></div>
+</body>
+
+</html>
