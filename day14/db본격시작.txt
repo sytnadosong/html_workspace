@@ -1,0 +1,14 @@
+DBMS
+
+Oracle(무료 express, 4G 용량제한)
+	- 공부, 연구기관
+	-sun microsystems사
+	-bea사
+	-My SQL MySQL(무료 커뮤니티 버전만 무료, 부분 유료)
+
+MariaDB
+	-창업자 oracle에 팔고 my sql과 똑같이 만듬
+	-my sql과 동일한 엔진
+
+
+

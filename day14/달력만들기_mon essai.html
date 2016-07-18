@@ -28,16 +28,9 @@ ul li{
 	float:left;
 	width:100px;
 }
-select{
-	width:
-	height:
-	background:
-	color:
-	font-size:
-}
 </style>
 <script src="../lib/lib.js"></script>
-<script src="../lib/DateBox.js"></script>
+<script src="../lib/Datebox_mon essai.js"></script>
 <script>
 var down;
 var sel_yy;
@@ -69,9 +62,13 @@ function init(){
 		sel_mm.add(op);
 	}
 
+	//최대 42개의 날짜 박스를 생성한다!!
+	/*for(var i=1;i<=42;i++){
+		var box = new Datebox(down, 100,100,i);
+		box.init();
+	}*/
 	createBox();
 }
-
 //기존에 출력된 달력을 모두 지운다!!
 function deleteBox(){
 	down.innerText="";
@@ -80,35 +77,78 @@ function deleteBox(){
 //달력 생성 
 function createBox(){
 	//현재 select박스에 선택한 값에 의한 날짜 정보 셋팅!!
-	var d = new Date(sel_yy.value+"-"+sel_mm.value+"-1");
+
+	var d=new Date(sel_yy.value+"-"+sel_mm.value+"-1");//해당년월의1일
+	console.log(d);
+
+	//console.log(d.getDay()
+	//+"번째는"+dayName[d.getDay()]);
+
+	//해당월이 며칠까지있나?
+	//d.setDate();
+	//d.setDate(5);//해당 년월의 5일로 놓는다.
 	//console.log(d);
 
-	//현재 요일을 구한다!! 0~6
-	//console.log(d.getDay()+"번째는 "+dayName[d.getDay()]);
+	//d.setDate(0);//전달의 마지막날!!
+
+
 
 	//최대 42개의 날짜 박스를 생성한다!!
+	//alert(new Date("2016-2-29"));
+
 	var n=0;
-	var lastDate=getLastDate(sel_yy.value, sel_mm.value);
+	var lastDate=getLastDate(sel_yy.value, sel_mm.value);//보여지는날짜보다-1 왜? 월은 0부터 시작하니깐...
+	//d.setDate(0);//이전달의 마지막날로셋팅한다.
+	//d.setDate(1);
+	//var lastDate=d.getDate();
+	//console.log("이전달의 마지막 날짜는"+lastDate);
 
 	for(var i=1;i<=42;i++){
-		if( i>d.getDay() && n<lastDate){ 
-			//해당 요일의 인덱스부터 날짜를 증가시킨다
+		if( i>d.getDay() && n<lastDate){//해당 요일의 인덱스부터날짜를 증가시킨다.
 			n++;
 			var box = new DateBox(down, 100,100,n);
 			box.init();
 		}else{
 			var box = new DateBox(down, 100,100,"");
 			box.init();
+		
 		}
-	}
 
+		
+
+		
+	}
 }
 
 //down 영역에 선택한 날짜에 해당하는 달력이 출력!!
 function showCal(){
+	var d = new Date(); //날짜...오늘
+	//console.log(d);
+	/*
+	d.setFullYear(2015);
+	console.log(d);
+	console.log(d.getDay());
 	deleteBox(); //기존꺼 지우고
 	createBox(); //새로 생성
+	*/
 }
+/*
+//기존에 출력된 달력을 모두 지운다!!
+function deleteBox(){
+	down.showCal("");
+	down.innerText="";
+}
+
+function deleteBox
+
+//down 영역에 선택한 날짜에 해당하는 달력이 출력!!
+function createBox(){
+	for(var i=0;i<=42;i++){
+		var box =new DateBox()
+
+	}
+
+}*/
 </script>
 </head>
 <body>
